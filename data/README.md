@@ -38,7 +38,6 @@ Each line is a JSON object with these fields:
 | Field | Type | Description |
 |-------|------|-------------|
 | `record_id` | string | SHA-256 hash (first 16 chars) of `prompt_id:completion_id:rubric` |
-| `cluster_id` | string | `prompt_id:completion_id` — conversation-level grouping for CJE |
 | `prompt_id` | string | UUID from meta_eval dataset |
 | `completion_id` | string | UUID from meta_eval dataset |
 | `category` | string | HealthBench category (e.g., `cluster:emergency_referrals_emergent_emergency_behavior`) |

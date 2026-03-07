@@ -2,7 +2,7 @@
 
 Reproducibility artifact for [*When the Judge is Wrong: Calibrating LLM Evaluators with CJE*](https://cimolabs.com/blog/judge-calibration-docs).
 
-**Key finding:** Two LLM judges (GPT-4o-mini and Claude Haiku 4.5) both produce overconfident criterion-met scores on HealthBench's 29,511 physician-labeled medical evaluations. After isotonic calibration with [CJE](https://github.com/cimo-labs/cje), both converge to the same calibrated estimate (0.6711 vs 0.6712) despite a 73 percentage-point gap in raw confidence (0.916 vs 0.802). With only 5% oracle labels (~1,475 physician judgments), the calibrated estimates remain within 1 pp of the full-oracle result.
+**Key finding:** Two LLM judges (GPT-4o-mini and Claude Haiku 4.5) both produce overconfident criterion-met scores on HealthBench's 29,511 physician-labeled medical evaluations. After isotonic calibration with [CJE](https://github.com/cimo-labs/cje), both converge to the same calibrated estimate (0.6711 vs 0.6712) despite an 11.5 pp gap in raw confidence (0.916 vs 0.801) and up to 73 pp cross-judge disagreement at the category level. With only 5% oracle labels (~1,475 physician judgments), the calibrated estimates remain within about 1.4-2.1 pp of the full-oracle result.
 
 ## Quick Verification (No API Keys)
 
@@ -15,7 +15,7 @@ python scripts/run_judges.py --from-cache data/ --oracle-sweep
 
 This loads the cached judge results from `data/` and runs CJE calibration locally. You should see:
 - GPT-4o-mini: calibrated estimate **0.6711**, raw confidence 0.916, shift **-0.2449**
-- Claude Haiku 4.5: calibrated estimate **0.6712**, raw confidence 0.802, shift **-0.1303**
+- Claude Haiku 4.5: calibrated estimate **0.6712**, raw confidence 0.801, shift **-0.1303**
 
 ## Full Reproduction (API Keys Required)
 
@@ -79,7 +79,7 @@ The 130 MB `meta_eval.jsonl` dataset is **not** included — it's publicly avail
 - **Blog post**: [When the Judge is Wrong](https://cimolabs.com/blog/judge-calibration-docs)
 - **CJE paper**: [arXiv:2512.11150](https://arxiv.org/abs/2512.11150)
 - **CJE library**: [github.com/cimo-labs/cje](https://github.com/cimo-labs/cje) / `pip install cje-eval`
-- **inspect_evals PR**: [#1206](https://github.com/UKGovernmentBEIS/inspect_evals/pull/1206) (generic judge calibration tool)
+- **inspect_evals PR**: [#1178](https://github.com/UKGovernmentBEIS/inspect_evals/pull/1178) (generic judge calibration tool, merged)
 - **HealthBench**: [OpenAI HealthBench](https://github.com/openai/healthbench)
 
 ## License
