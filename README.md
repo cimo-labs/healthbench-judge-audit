@@ -71,6 +71,7 @@ results/              # Pre-computed outputs (committed for verification)
   prompt_ab_confound_openai_gpt-4o-mini.md
 
 data/                 # Pre-cached judge outputs (~18 MB, committed)
+  README.md             # Data provenance and JSONL schema
   judge_results_openai_gpt-4o-mini.jsonl
   judge_results_anthropic_claude-haiku-4-5-20251001.jsonl
 ```
