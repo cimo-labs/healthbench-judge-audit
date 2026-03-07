@@ -635,7 +635,7 @@ def format_report(
         by_cat.setdefault(cat, []).append(r)
 
     # Sort by sample count descending
-    for cat, cat_results in sorted(by_cat.items(), key=lambda x: -len(x[1])):
+    for cat, cat_results in sorted(by_cat.items(), key=lambda x: (-len(x[1]), x[0])):
         cn = len(cat_results)
         if cn < 10:
             continue
