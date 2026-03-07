@@ -1,0 +1,19 @@
+[project]
+name = "healthbench-judge-audit"
+version = "0.1.0"
+description = "Reproducibility artifact for HealthBench judge calibration audit using CJE"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.10"
+dependencies = [
+    "cje-eval>=0.4.0",
+    "openai>=1.0",
+    "anthropic>=0.30",
+    "httpx>=0.24",
+]
+
+[project.optional-dependencies]
+dev = [
+    "ruff",
+    "black",
+]
