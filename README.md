@@ -1,6 +1,6 @@
 # HealthBench Judge Calibration Audit
 
-Reproducibility artifact for [*When the Judge is Wrong: Calibrating LLM Evaluators with CJE*](https://cimolabs.com/blog/judge-calibration-docs).
+Reproducibility artifact for [*When the Judge is Wrong: Calibrating LLM Evaluators with CJE*](https://cimolabs.com/research/healthbench-judge-audit).
 
 **Key finding:** Two LLM judges (GPT-4o-mini and Claude Haiku 4.5) both produce overconfident criterion-met scores on HealthBench's 29,511 physician-labeled medical evaluations. After isotonic calibration with [CJE](https://github.com/cimo-labs/cje), both converge to the same calibrated estimate (0.6711 vs 0.6712) despite an 11.5 pp gap in raw confidence (0.916 vs 0.801) and up to 73 pp cross-judge disagreement at the category level. With only 5% oracle labels (~1,450 physician judgments), the calibrated estimates remain within about 1.4-2.1 pp of the full-oracle result.
 
@@ -80,7 +80,7 @@ The 130 MB `meta_eval.jsonl` dataset is **not** included — it's publicly avail
 
 ## Links
 
-- **Blog post**: [When the Judge is Wrong](https://cimolabs.com/blog/judge-calibration-docs)
+- **Blog post**: [When the Judge is Wrong](https://cimolabs.com/research/healthbench-judge-audit)
 - **CJE paper**: [arXiv:2512.11150](https://arxiv.org/abs/2512.11150)
 - **CJE library**: [github.com/cimo-labs/cje](https://github.com/cimo-labs/cje) / `pip install cje-eval`
 - **inspect_evals PR**: [#1178](https://github.com/UKGovernmentBEIS/inspect_evals/pull/1178) (generic judge calibration tool, merged)
