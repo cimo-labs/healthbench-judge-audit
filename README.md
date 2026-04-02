@@ -6,11 +6,12 @@ Reproducibility artifact for [*When the Judge is Wrong: Calibrating LLM Evaluato
 
 ## Quick Verification (No API Keys)
 
-Re-run CJE calibration on pre-cached judge outputs to reproduce the exact numbers in `results/`:
+Re-run CJE calibration on pre-cached judge outputs to reproduce the exact numbers in `results/`.
+If your package index does not yet have the required `cje-eval` release, install CJE directly from source:
 
 ```bash
-pip install cje-eval
-python scripts/run_judges.py --from-cache data/ --oracle-sweep
+pip install "cje-eval @ git+https://github.com/cimo-labs/cje.git"
+python scripts/run_judges.py --from-cache data/ --oracle-sweep --n-bootstrap 500 --sweep-seeds 1
 ```
 
 This loads the cached judge results from `data/` and runs CJE calibration locally. You should see:
@@ -22,6 +23,7 @@ This loads the cached judge results from `data/` and runs CJE calibration locall
 Run the complete pipeline from scratch:
 
 ```bash
+pip install "cje-eval @ git+https://github.com/cimo-labs/cje.git"
 pip install -e .
 export OPENAI_API_KEY=...
 export ANTHROPIC_API_KEY=...
@@ -30,7 +32,9 @@ export ANTHROPIC_API_KEY=...
 # This also downloads meta_eval.jsonl (~130 MB) to .cache/ on first run.
 python scripts/run_judges.py \
     --judges openai/gpt-4o-mini anthropic/claude-haiku-4-5-20251001 \
-    --oracle-sweep
+    --oracle-sweep \
+    --n-bootstrap 500 \
+    --sweep-seeds 1
 
 # Step 2: 2x2 ablation: judge score type x oracle label type (no API calls, uses .cache/)
 python scripts/run_ablation.py
@@ -82,7 +86,7 @@ The 130 MB `meta_eval.jsonl` dataset is **not** included — it's publicly avail
 
 - **Blog post**: [When the Judge is Wrong](https://cimolabs.com/research/healthbench-judge-audit)
 - **CJE paper**: [arXiv:2512.11150](https://arxiv.org/abs/2512.11150)
-- **CJE library**: [github.com/cimo-labs/cje](https://github.com/cimo-labs/cje) / `pip install cje-eval`
+- **CJE library**: [github.com/cimo-labs/cje](https://github.com/cimo-labs/cje)
 - **inspect_evals PR**: [#1178](https://github.com/UKGovernmentBEIS/inspect_evals/pull/1178) (generic judge calibration tool, merged)
 - **HealthBench**: [OpenAI HealthBench](https://github.com/openai/healthbench)
 
